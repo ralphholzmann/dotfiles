@@ -1,0 +1,10 @@
+--type-set=thrift=.thrift
+--type-add=css=.less
+--type-set=mustache=.mustache
+--type-add=html=.mustache
+--type-set=ignorables=.log,.tmp,.pdf,.bundle.css
+--ignore-dir=i18n
+--ignore-dir=.idea
+--ignore-dir=log
+--ignore-dir=node_modules
+--color
