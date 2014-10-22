@@ -1,14 +1,33 @@
-"Preamble ---------------------------------------------------------------- {{{
-call pathogen#infect()
-syntax on
-filetype off
-filetype plugin indent on
+" Basic options
 set nocompatible
+filetype off
+syntax on
 
+" Vundle Setup
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
+" Plugins
+Plugin 'scrooloose/nerdtree'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'Townk/vim-autoclose'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'wavded/vim-stylus'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Valloric/YouCompleteMe'
 
+" Vundle Teardown
+call vundle#end()
+filetype plugin indent on
 
-" Basic options ----------------------------------------------------------- {{{
+" Advanced config
 set encoding=utf-8
 set modelines=0
 set autoindent
@@ -25,7 +44,7 @@ set laststatus=2
 set history=1000
 set undofile
 set undoreload=10000
-set shell=/bin/bash
+set shell=/bin/zsh
 set lazyredraw
 set matchtime=3
 set showbreak=↵
@@ -50,11 +69,6 @@ au InsertLeave * set nolist
 
 " Make Vim able to edit crontab files again.
 set backupskip=/tmp/*,/private/tmp/*"
-
-" Save when losing focus
-au FocusLost * :wa
-
-au VimResized * :wincmd =
 
 " tab settings
 set tabstop=2
@@ -100,18 +114,14 @@ set noswapfile                    " It's 2012, Vim.
 
 " quick escape
 inoremap kj <Esc>
-au InsertLeave <buffer> :w
-au InsertLeave <buffer> :SyntasticCheck
 
 " Don't let me switch files in nerdtree buffer
-let g:NERDTreeWinSize = 60
+let g:NERDTreeWinSize = 40
 autocmd FileType nerdtree setlocal norelativenumber
 autocmd FileType minibufexpl setlocal norelativenumber
 autocmd VimEnter * NERDTree
 autocmd BufEnter * NERDTreeMirror
 autocmd VimEnter * wincmd w
-
-autocmd InsertLeave * :%s/^\s\+$//e
 
 " Make sure mini buf explorer shows on the top
 let g:miniBufExplSplitBelow=0
@@ -119,39 +129,8 @@ let g:miniBufExplSplitBelow=0
 set exrc			" enable per-directory .vimrc files
 set secure			" disable unsafe commands in local .vimrc files
 
-au BufNewFile,BufRead .jshintrc set filetype=javascript
-
-"Powerline settings
-let g:Powerline_symbols = 'fancy'
-"set fillchars+=stl:\ ,stlnc:\
-"
-
-function ToggleScheme()
-  if &background ==# "dark"
-    colorscheme solarized
-    set background=light
-  else
-    set background=dark
-    colorscheme molokai
-  endif
-endfunction
-
-function ToggleIndent()
-  if &tabstop ==# 2
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4
-    set noexpandtab
-  else
-    set tabstop=2
-    set shiftwidth=2
-    set softtabstop=2
-    set expandtab
-  endif
-endfunction
-
-noremap <F5> :call ToggleScheme()<cr>
-noremap <F6> :call ToggleIndent()<cr>
+" Syntastic
+let g:syntastic_check_on_open=1
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -160,12 +139,17 @@ let g:ctrlp_working_path_mode = 2 " Smart path mode
 let g:ctrlp_mru_files = 1 " Enable Most Recently Used files feature
 let g:ctrlp_jump_to_buffer = 2 " Jump to tab AND buffer if already open
 
+" Mini buf explorer
 autocmd FileType minibufexpl setlocal norelativenumber
-let g:syntastic_check_on_open=1
-au InsertLeave * SyntasticCheck
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" Airline fonts
+let g:airline_powerline_fonts = 1
+
+" File types
+au BufNewFile,BufRead .jshintrc set filetype=javascript
