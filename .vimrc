@@ -10,7 +10,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins
 Plugin 'scrooloose/nerdtree'
-Plugin 'fholgado/minibufexpl.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
@@ -20,8 +19,11 @@ Plugin 'wavded/vim-stylus'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mxw/vim-jsx'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'yosiat/oceanic-next-vim'
 
 " Vundle Teardown
 call vundle#end()
@@ -39,6 +41,7 @@ set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
+set number
 set relativenumber
 set laststatus=2
 set history=1000
@@ -113,7 +116,7 @@ set backup                        " enable backups
 set noswapfile                    " It's 2012, Vim.
 
 " quick escape
-inoremap kj <Esc>
+inoremap kj <Esc>l
 
 " Don't let me switch files in nerdtree buffer
 let g:NERDTreeWinSize = 40
@@ -131,13 +134,17 @@ set secure			" disable unsafe commands in local .vimrc files
 
 " Syntastic
 let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['eslint']
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/build/*,*/adm/dist/*
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_working_path_mode = 2 " Smart path mode
 let g:ctrlp_mru_files = 1 " Enable Most Recently Used files feature
 let g:ctrlp_jump_to_buffer = 2 " Jump to tab AND buffer if already open
+let g:ctrlp_root_markers = ['.git', '.eslintrc']
+autocmd VimEnter * CtrlPClearCache
 
 " Mini buf explorer
 autocmd FileType minibufexpl setlocal norelativenumber
@@ -150,6 +157,16 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " Airline fonts
 let g:airline_powerline_fonts = 1
+let g:airline_enable_syntastic = 1
+let g:airline#extensions#tabline#buffer_nr_format = '%s '
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamecollapse = 0
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " File types
 au BufNewFile,BufRead .jshintrc set filetype=javascript
+au BufNewFile,BufRead *.hbs set filetype=mustache
+au BufNewFile,BufRead *.styl set filetype=stylus
+
+set lines=500 columns=500
