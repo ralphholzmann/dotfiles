@@ -1,0 +1,43 @@
+alias holzmann.io='ssh root@198.199.122.170'
+alias paul='ssh root@198.199.73.222'
+alias s2dsmtp1='ssh root@192.81.223.65'
+alias s2dsmtp2='ssh root@198.211.105.185'
+alias htt-git='ssh git@107.170.116.17'
+alias htt='ssh root@192.241.252.16'
+alias s2dsite='ssh root@198.211.96.113'
+alias nas='ssh ralph@192.168.199.124'
+alias nasroot='ssh root@192.168.199.124'
+alias hanners='ssh root@198.199.97.228'
+alias hannersd='ssh root@104.236.8.250'
+alias s2dcron='ssh root@198.199.64.163'
+alias box='ssh root@box.holzmann.io'
+
+alias s2dmongo1='ssh root@198.199.81.228'
+alias s2dmongo2='ssh root@198.199.100.83'
+alias s2dmongo3='ssh root@198.211.127.64'
+
+alias vineadm-deploy-dev="fab --fabfile ~/workspace/vine-web/adm/deploy/fabfile.py -I set_env:dev deploy_client"
+alias vineadm-deploy-test="fab --fabfile ~/workspace/vine-web/adm/deploy/fabfile.py -I set_env:test deploy_client"
+alias vineadm-deploy-prod="fab --fabfile ~/workspace/vine-web/adm/deploy/fabfile.py -I set_env:prd deploy_client"
+alias vine-docker-box='ssh docker.dev.vine.co'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+
+alias ll='tree --dirsfirst -ChFupDaLg 1'
+alias copy-public-key='cat ~/.ssh/id_rsa.pub|pbcopy'
+alias ack='ack -C 5'
+alias vim='mvim'
+alias gs='git status'
+alias vimgit='vim `git status -s |  sed -ne "s/^ M //p"`'
+
+function grab() {
+  app_path=/Applications/Gyazo.app
+  /usr/bin/ruby $app_path/Contents/Resources/script $app_path $1
+}
+function beautjs() {
+  uglifyjs -o $1 --beautify --indent-level=2 --bracketize=true $1
+  js-beautify -r $1 -s 2 -m 2 -a -n -p
+}
