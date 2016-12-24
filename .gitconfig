@@ -1,6 +1,7 @@
 [user]
 	name = Ralph Holzmann
 	email = ralphholzmann@gmail.com
+	email = rholzmann@twitter.com
 [github]
   user = ralphholzmann
 [alias]
@@ -18,8 +19,9 @@
   sm = show-merges
   st = status
   ksdiff = difftool -y -t Kaleidoscope
+  latest = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 [color]
-  ui = auto
+	ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -35,6 +37,7 @@
   untracked = cyan
 [merge]
   log = true
+	tool = Kaleidoscope
 [rerere]
   enabled = 1
 [url "git@github.com:"]
@@ -60,12 +63,21 @@
 	templatedir = ~/.githooks
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
   
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
 	prompt = false
 [diff]
 	tool = Kaleidoscope
+	renames = true
 [push]
-	default = nothing
+	default = current
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[mergetool]
+	prompt = false
+[http]
+	postBuffer = 524288000

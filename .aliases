@@ -3,7 +3,11 @@ alias paul='ssh root@198.199.73.222'
 alias s2dsmtp1='ssh root@192.81.223.65'
 alias s2dsmtp2='ssh root@198.211.105.185'
 alias htt-git='ssh git@107.170.116.17'
-alias htt='ssh root@192.241.252.16'
+alias htt-old='ssh root@192.241.252.16'
+alias htt-mongo='ssh root@159.203.17.83'
+alias htt='ssh root@104.236.26.29'
+alias mail.hometowntickets.com='ssh root@159.203.31.0'
+alias statsd.hometowntickets.com='ssh root@159.203.7.14'
 alias s2dsite='ssh root@198.211.96.113'
 alias nas='ssh ralph@192.168.199.124'
 alias nasroot='ssh root@192.168.199.124'
@@ -11,6 +15,9 @@ alias hanners='ssh root@198.199.97.228'
 alias hannersd='ssh root@104.236.8.250'
 alias s2dcron='ssh root@198.199.64.163'
 alias box='ssh root@box.holzmann.io'
+alias sendtodropbox.com='ssh root@159.203.112.205'
+alias budget='ssh root@173.230.128.227'
+alias godel='ssh ralph@admin.throwaboomerang.com'
 
 alias s2dmongo1='ssh root@198.199.81.228'
 alias s2dmongo2='ssh root@198.199.100.83'
@@ -28,16 +35,22 @@ alias ~='cd ~'
 
 alias ll='tree --dirsfirst -ChFupDaLg 1'
 alias copy-public-key='cat ~/.ssh/id_rsa.pub|pbcopy'
+alias cpk='copy-public-key'
 alias ack='ack -C 5'
-alias vim='mvim'
+alias vim='nvim'
 alias gs='git status'
-alias vimgit='vim `git status -s |  sed -ne "s/^ M //p"`'
+alias vimgit='nvim `git status -s |  sed -ne "s/^ M //p"`'
+alias cat='pygmentize -O style=monokai -f console256 -g'
+alias catt='/bin/cat'
 
 function grab() {
-  app_path=/Applications/Gyazo.app
+  app_path=/opt/homebrew-cask/Caskroom/gyazo/3.1.2/Gyazo.app
   /usr/bin/ruby $app_path/Contents/Resources/script $app_path $1
 }
 function beautjs() {
   uglifyjs -o $1 --beautify --indent-level=2 --bracketize=true $1
   js-beautify -r $1 -s 2 -m 2 -a -n -p
+}
+function f() {
+  find . -name *$1
 }
