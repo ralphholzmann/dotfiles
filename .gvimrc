@@ -5,4 +5,4 @@ set guioptions-=L
 :macm Window.Select\ Next\ Tab  key=<Nop>
 :macm Window.Select\ Previous\ Tab  key=<Nop>
 set background=dark
-colorscheme molokai
+colorscheme monokai

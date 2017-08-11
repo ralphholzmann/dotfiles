@@ -1,7 +1,7 @@
 alias holzmann.io='ssh root@198.199.122.170'
 alias paul='ssh root@198.199.73.222'
-alias s2dsmtp1='ssh root@192.81.223.65'
-alias s2dsmtp2='ssh root@198.211.105.185'
+alias s2dsmtp1='ssh root@138.197.86.89'
+alias s2dsmtp2='ssh root@138.197.86.2'
 alias htt-git='ssh git@107.170.116.17'
 alias htt-old='ssh root@192.241.252.16'
 alias htt-mongo='ssh root@159.203.17.83'
@@ -18,6 +18,7 @@ alias box='ssh root@box.holzmann.io'
 alias sendtodropbox.com='ssh root@159.203.112.205'
 alias budget='ssh root@173.230.128.227'
 alias godel='ssh ralph@admin.throwaboomerang.com'
+alias mongohtt='ssh root@104.131.97.184'
 
 alias s2dmongo1='ssh root@198.199.81.228'
 alias s2dmongo2='ssh root@198.199.100.83'
@@ -37,14 +38,14 @@ alias ll='tree --dirsfirst -ChFupDaLg 1'
 alias copy-public-key='cat ~/.ssh/id_rsa.pub|pbcopy'
 alias cpk='copy-public-key'
 alias ack='ack -C 5'
-alias vim='nvim'
+alias vim='mvim'
 alias gs='git status'
 alias vimgit='nvim `git status -s |  sed -ne "s/^ M //p"`'
 alias cat='pygmentize -O style=monokai -f console256 -g'
 alias catt='/bin/cat'
 
 function grab() {
-  app_path=/opt/homebrew-cask/Caskroom/gyazo/3.1.2/Gyazo.app
+  app_path=/Applications/Gyazo.app
   /usr/bin/ruby $app_path/Contents/Resources/script $app_path $1
 }
 function beautjs() {

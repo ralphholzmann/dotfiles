@@ -11,10 +11,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Townk/vim-autoclose'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'wavded/vim-stylus'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
@@ -25,6 +25,7 @@ Plugin 'scwood/vim-hybrid'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'sickill/vim-monokai'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'Valloric/YouCompleteMe'
 
 " Vundle Teardown
 call vundle#end()
@@ -172,7 +173,28 @@ autocmd BufWritePre *.styl :%s/;//e
 " Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_aggregate_errors=1
+
+" syntactic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+
+
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -181,5 +203,3 @@ let g:used_javascript_libs = 'jquery,react'
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-
